@@ -25,12 +25,12 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/debarkamondal/expo-libsignal-dezire.git"
+    "url": "https://github.com/nijhum-in/expo-libsignal-dezire.git"
   },
   "bugs": {
-    "url": "https://github.com/debarkamondal/expo-libsignal-dezire/issues"
+    "url": "https://github.com/nijhum-in/expo-libsignal-dezire/issues"
   },
-  "homepage": "https://github.com/debarkamondal/expo-libsignal-dezire#readme",
+  "homepage": "https://github.com/nijhum-in/expo-libsignal-dezire#readme",
   "files": [
     "build",
     "android",
