@@ -4,23 +4,24 @@ This document provides instructions and context for AI coding agents working in 
 
 ## Ecosystem Context
 
-> **This module is the bridge between Rust cryptography and React Native.** It does not implement any crypto itself — it wraps `libsignal-dezire` via FFI/JNI.
+> **This module wraps `libsignal-dezire` (Rust) for React Native / Expo.** It provides native C-FFI (iOS) and JNI (Android) bindings so `deezchatz-mobile` can perform E2EE cryptography at native speeds.
 
 ```
-nijhum-mobile  →  ⭐ expo-libsignal-dezire (this module)  →  libsignal-dezire (Rust)
+deezchatz-mobile  →  ⭐ expo-libsignal-dezire (this module)  →  libsignal-dezire (Rust)
 ```
 
 | Relationship | Details |
 |-------------|---------|
 | **Depends on** | `libsignal-dezire` — included as a git submodule at `libsignal-dezire/` |
-| **Used by** | `nijhum-mobile` — the Nijhum messaging app |
-| **Coordinates with** | `nijhum-api` uses the same `libsignal-dezire` crate server-side for signature verification |
+| **Used by** | `deezchatz-mobile` — the DeezChatz messaging app |
+| **Coordinates with** | `deezchatz-api` uses the same `libsignal-dezire` crate server-side for signature verification |
+| **Wraps** | `libsignal-dezire` (Rust crate) via git submodule or local path |
 
 ### Cross-Repo Impact Rules
 
 - **If `libsignal-dezire` changes an FFI function signature**: you MUST update the Swift wrapper (`ios/LibsignalDezireModule.swift`), the Kotlin wrapper (`android/`), and the TypeScript declarations (`src/LibsignalDezireModule.ts`).
 - **If you add a new Rust function**: it needs to be exposed in the Rust `ffi` module, then wrapped in Swift, Kotlin, and TypeScript.
-- **If you change the TypeScript API**: `nijhum-mobile`'s crypto utils will need updating.
+- **If you change the TypeScript API**: `deezchatz-mobile`'s crypto utils will need updating.
 
 ---
 
@@ -101,7 +102,7 @@ Ratchet state lives on the **Rust heap**, not in JavaScript's garbage-collected 
 - `ratchetInitSender` / `ratchetInitReceiver` allocate Rust memory and return a UUID handle.
 - `ratchetFree(statePtr)` deallocates the Rust memory.
 - **If `ratchetFree` is not called, the memory leaks.** There is no finalizer or garbage collection for native heap memory.
-- In `nijhum-mobile`, the `RatchetSession` TypeScript class calls `ratchetFree` in its `close()` method. Always ensure `close()` is called when a session ends.
+- In `deezchatz-mobile`, the `RatchetSession` TypeScript class calls `ratchetFree` in its `close()` method. Always ensure `close()` is called when a session ends.
 
 ---
 
@@ -140,7 +141,7 @@ type RatchetEncryptResult = { header: Uint8Array; ciphertext: Uint8Array };
 
 ## Code Style
 
-- **TypeScript**: Follow the same conventions as `nijhum-mobile` (strict mode, explicit types, no `any`).
+- **TypeScript**: Follow the same conventions as `deezchatz-mobile` (strict mode, explicit types, no `any`).
 - **Swift**: Standard Swift conventions. The main file (`LibsignalDezireModule.swift`) is ~19KB — be careful with large changes.
 - **Kotlin**: Standard Kotlin conventions for JNI code.
 - All binary data is passed as `Uint8Array` in TypeScript, `Data` in Swift, `ByteArray` in Kotlin.

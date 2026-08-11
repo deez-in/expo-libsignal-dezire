@@ -3,13 +3,13 @@
 [![npm](https://img.shields.io/npm/v/expo-libsignal-dezire.svg)](https://www.npmjs.com/package/expo-libsignal-dezire)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-An Expo Native Module that bridges [libsignal-dezire](https://github.com/nijhum-in/libsignal-dezire) — a pure Rust implementation of the Signal Protocol — into React Native. This is **not** a reimplementation; it's a thin wrapper that calls compiled Rust code through platform-native FFI (C on iOS, JNI on Android).
+An Expo Native Module that bridges [libsignal-dezire](https://github.com/deez-in/libsignal-dezire) — a pure Rust implementation of the Signal Protocol — into React Native. This is **not** a reimplementation; it's a thin wrapper that calls compiled Rust code through platform-native FFI (C on iOS, JNI on Android).
 
 ## Where This Fits
 
 ```
 ┌─────────────────────────────────────────────────────────┐
-│  Nijhum Mobile (React Native / Expo)                    │
+│  DeezChatz Mobile (React Native / Expo)                 │
 │    │                                                    │
 │    └─ ⭐ expo-libsignal-dezire (this module)            │
 │         │                                               │
