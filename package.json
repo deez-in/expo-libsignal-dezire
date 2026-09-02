@@ -1,6 +1,6 @@
 {
   "name": "expo-libsignal-dezire",
-  "version": "0.1.4",
+  "version": "0.6.0",
   "description": "Expo Native Module for libsignal-dezire",
   "main": "build/index.js",
   "types": "build/index.d.ts",
