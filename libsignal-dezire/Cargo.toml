@@ -1,0 +1,22 @@
+[package]
+name = "libsignal-dezire-wrapper"
+version = "0.2.0"
+edition = "2021"
+
+[lib]
+name = "libsignal_dezire"
+crate-type = ["staticlib", "cdylib"]
+
+[dependencies]
+libsignal-dezire = { version = "0.2.0" }
+
+[features]
+ffi = ["libsignal-dezire/ffi"]
+jni = ["libsignal-dezire/jni"]
+
+[profile.release]
+opt-level = 3
+lto = true
+strip = true
+codegen-units = 1
+panic = "abort"
