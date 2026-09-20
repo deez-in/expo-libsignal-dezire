@@ -20,6 +20,9 @@ class LibsignalDezireModule extends NativeModule {
   async genPubKey(_k: Uint8Array): Promise<Uint8Array> {
     throw new Error("LibsignalDezire is not available on web");
   }
+  async encodePublicKey(_k: Uint8Array): Promise<Uint8Array> {
+    throw new Error("LibsignalDezire is not available on web");
+  }
   async genSecret(): Promise<Uint8Array> {
     throw new Error("LibsignalDezire is not available on web");
   }

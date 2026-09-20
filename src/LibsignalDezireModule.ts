@@ -6,6 +6,7 @@ declare class LibsignalDezireModule extends NativeModule {
   genKeyPair(): Promise<KeyPair>;
   genSecret(): Promise<Uint8Array>;
   genPubKey(k: Uint8Array): Promise<Uint8Array>;
+  encodePublicKey(k: Uint8Array): Promise<Uint8Array>;
   vxeddsaSign(
     k: Uint8Array,
     M: Uint8Array,

@@ -59,6 +59,20 @@ public class LibsignalDezireModule: Module {
             return Data(pubkey)
         }
 
+        AsyncFunction("encodePublicKey") { (kData: Data) -> Data in
+            let k = [UInt8](kData)
+            
+            guard k.count == 32 else {
+                throw NSError(
+                    domain: "LibsignalDezire", code: 1,
+                    userInfo: [NSLocalizedDescriptionKey: "Key must be 32 bytes"])
+            }
+            
+            var pubkey = [UInt8](repeating: 0, count: 33)
+            encode_public_key_ffi(k, &pubkey)
+            return Data(pubkey)
+        }
+
         AsyncFunction("genSecret") { () -> Data in
             var secret = [UInt8](repeating: 0, count: 32)
             gen_secret_ffi(&secret)

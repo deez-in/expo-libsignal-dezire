@@ -28,6 +28,10 @@ class LibsignalDezireModule : Module() {
       genPubKey(k) ?: throw Exception("Failed to generate public key")
     }
 
+    AsyncFunction("encodePublicKey") { k: ByteArray ->
+      encodePublicKey(k) ?: throw Exception("Failed to encode public key")
+    }
+
     AsyncFunction("genSecret") { genSecret() }
 
     AsyncFunction("vxeddsaSign") { k: ByteArray, m: ByteArray ->
@@ -210,6 +214,8 @@ class LibsignalDezireModule : Module() {
     @JvmStatic external fun genKeyPair(): Map<String, Any>?
 
     @JvmStatic external fun genPubKey(k: ByteArray): ByteArray?
+
+    @JvmStatic external fun encodePublicKey(key: ByteArray): ByteArray?
 
     @JvmStatic external fun genSecret(): ByteArray?
 

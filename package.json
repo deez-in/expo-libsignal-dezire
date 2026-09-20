@@ -1,6 +1,6 @@
 {
   "name": "expo-libsignal-dezire",
-  "version": "0.7.0",
+  "version": "0.7.1",
   "description": "Expo Native Module for libsignal-dezire",
   "main": "build/index.js",
   "types": "build/index.d.ts",
@@ -40,7 +40,7 @@
   "devDependencies": {
     "@types/react": "~19.2.4",
     "bun-types": "^1.4.0",
-    "expo": "~57.0.19",
+    "expo": "~57.0.24",
     "expo-module-scripts": "^56.0.3",
     "react": "19.2.3",
     "react-native": "0.86.3",
